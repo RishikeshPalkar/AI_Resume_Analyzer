@@ -1,6 +1,6 @@
 # AI Resume Analyzer & Job Matcher
 
-[![CI](https://github.com/RiskyRexx/AI_Resume_Analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/RiskyRexx/AI_Resume_Analyzer/actions)
+[![CI](https://github.com/RishikeshPalkar/AI_Resume_Analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/RishikeshPalkar/AI_Resume_Analyzer/actions)
 ![Java 21](https://img.shields.io/badge/Java-21-orange.svg)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18-blue.svg)
