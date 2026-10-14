@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: false # H2 creates schema directly in unit tests; Testcontainers or MySQL integration tests test Flyway
+  ai:
+    openai:
+      api-key: test-mock-key
+      chat:
+        options:
+          model: gpt-4o-mini
+
+app:
+  jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    access-token-expiration-ms: 60000
+    refresh-token-expiration-ms: 120000
+    issuer: ai-resume-analyzer-test
+  ai:
+    mock-fallback-enabled: true
+
+logging:
+  level:
+    root: WARN
+    com.example.resumeanalyzer: INFO

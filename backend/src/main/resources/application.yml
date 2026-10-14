@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: ai-resume-analyzer
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: ${PORT:9090}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+
+# Application Custom Configurations
+app:
+  jwt:
+    # Must be minimum 256-bit (32 bytes) secret
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    access-token-expiration-ms: 900000 # 15 minutes
+    refresh-token-expiration-ms: 604800000 # 7 days
+    issuer: ai-resume-analyzer
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+  upload:
+    max-file-size-bytes: 5242880 # 5 MB
+    max-extracted-text-chars: 50000
+    allowed-mime-types:
+      - application/pdf
+      - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  scoring:
+    required-skill-weight: 50
+    experience-evidence-weight: 25
+    qualifications-weight: 15
+    preferred-skill-weight: 10
+  ai:
+    prompt-version: "v1.2.0"
+    model: ${AI_MODEL:gpt-4o-mini}
+    mock-fallback-enabled: ${AI_MOCK_FALLBACK:true}
+    timeout-seconds: 45
+
+# Springdoc OpenAPI Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: method

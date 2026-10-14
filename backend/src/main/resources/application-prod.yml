@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      leak-detection-threshold: 60000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: ${AI_MODEL:gpt-4o-mini}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+  ai:
+    mock-fallback-enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.example.resumeanalyzer: INFO
+    org.springframework.security: WARN
